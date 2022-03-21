@@ -6,13 +6,115 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+    <ImageView
+            android:layout_width="184dp"
+            android:layout_height="179dp"
+            app:srcCompat="@android:drawable/ic_menu_myplaces"
+            android:id="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
     <TextView
+            android:text="Luka Modrić"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:lineSpacingExtra="8sp"
+            android:textColor="#FF0000"
+            android:layout_marginTop="16dp" />
+
+    <TextView
+            android:text="Najbolji nogometas jel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView1"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView1"
+            app:layout_constraintHorizontal_bias="0.764" />
+
+    <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:inputType="textPersonName"
+            android:text="Ime i prezime"
+            android:ems="10"
+            android:id="@+id/nameSurnameEditText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            android:layout_marginTop="24dp"
+            android:minHeight="48dp" />
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/entry2"
+            app:layout_constraintStart_toStartOf="@+id/entry1"
+            app:layout_constraintEnd_toEndOf="@+id/entry1"
+            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintTop_toBottomOf="@+id/entry1"
+            android:minHeight="48dp"
+            android:layout_marginTop="16dp"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/entry1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintTop_toBottomOf="@+id/userSubmit"
+            android:minHeight="48dp"
+            android:layout_marginTop="32dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Opis"
+            android:ems="10"
+            android:id="@+id/descriptionEditText"
+            app:layout_constraintStart_toStartOf="@+id/nameSurnameEditText"
+            app:layout_constraintEnd_toEndOf="@+id/nameSurnameEditText"
+            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintTop_toBottomOf="@+id/nameSurnameEditText"
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp" />
+
+    <Button
+            android:text="Unesi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userSubmit"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionEditText"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionEditText"
+            app:layout_constraintStart_toStartOf="@+id/descriptionEditText"
+            android:layout_marginTop="16dp" />
+
+    <Button
+            android:text="Izracunaj"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bmiSubmit"
+            app:layout_constraintTop_toBottomOf="@+id/entry2"
+            app:layout_constraintEnd_toEndOf="@+id/entry2"
+            app:layout_constraintStart_toStartOf="@+id/entry2"
+            android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
