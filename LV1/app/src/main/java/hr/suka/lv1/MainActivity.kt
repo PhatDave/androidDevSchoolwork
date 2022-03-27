@@ -25,6 +25,16 @@ class MainActivity : AppCompatActivity() {
         val entry2 = findViewById<EditText>(R.id.entry2)
         val bmiSubmit = findViewById<Button>(R.id.bmiSubmit)
 
+        val firstName = findViewById<EditText>(R.id.nameSurnameEditText)
+        val firstNameReadonly = findViewById<TextView>(R.id.textView1)
+        val userSubmit = findViewById<Button>(R.id.userSubmit)
+
+        userSubmit.setOnClickListener {
+            val name = firstName.text.toString()
+            firstNameReadonly.text = name
+        }
+
+
         bmiSubmit.setOnClickListener {
             val height = entry1.text.toString()
             val weight = entry2.text.toString()

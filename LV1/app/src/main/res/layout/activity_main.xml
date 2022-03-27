@@ -45,7 +45,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Ime i prezime"
             android:ems="10"
             android:id="@+id/nameSurnameEditText"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +86,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="Opis"
             android:ems="10"
             android:id="@+id/descriptionEditText"
             app:layout_constraintStart_toStartOf="@+id/nameSurnameEditText"
@@ -95,7 +93,8 @@
             app:layout_constraintHorizontal_bias="0.427"
             app:layout_constraintTop_toBottomOf="@+id/nameSurnameEditText"
             android:layout_marginTop="16dp"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:contentDescription="Opis" />
 
     <Button
             android:text="Unesi"
