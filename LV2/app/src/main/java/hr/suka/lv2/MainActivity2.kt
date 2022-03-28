@@ -3,6 +3,7 @@ package hr.suka.lv2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.widget.Button
 
 class MainActivity2 : AppCompatActivity() {
@@ -12,6 +13,10 @@ class MainActivity2 : AppCompatActivity() {
 
         val backButton = findViewById<Button>(R.id.activity2ReturnButton)
         val fragmentButton = findViewById<Button>(R.id.activity2FragmentButton)
+
+        fragmentButton.setOnClickListener {
+            replace<ItemFragment>(R.id.fragment)
+        }
 
         backButton.setOnClickListener {
             finish()
