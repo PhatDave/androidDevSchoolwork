@@ -4,17 +4,27 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity2">
 
     <Button
-            android:text="Batn"
+            android:text="Batn Nazad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/activity1SwapButton"
+            android:id="@+id/activity2ReturnButton"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="34sp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp" />
+
+    <Button
+            android:text="Opet Batn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity2FragmentButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="64dp"
             android:textSize="34sp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
