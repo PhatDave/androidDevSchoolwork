@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">LV3</string>
+    <string name="task1">Kvak</string>
+    <string name="task2">Kvak opet</string>
+    <string name="task3">Kvak jos jednom</string>
 </resources>
