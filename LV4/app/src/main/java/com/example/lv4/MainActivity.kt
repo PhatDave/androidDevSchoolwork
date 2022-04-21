@@ -4,17 +4,16 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import java.text.DecimalFormat
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-	private lateinit var sensorManager: SensorManager;
+	private lateinit var sensorManager: SensorManager
 	private lateinit var accelerationSensor: Sensor
 
-	private val accelerationDisplay : TextView = findViewById(R.id.accelerationDisplay)
-	private val accelerationComponents : TextView = findViewById(R.id.accelerationComponents)
+	private val accelerationDisplay = findViewById<TextView>(R.id.accelerationDisplay)
+	private val accelerationComponents = findViewById<TextView>(R.id.accelerationComponents)
 
 	private val sensorListener = object : SensorEventListener {
 		override fun onSensorChanged(event: SensorEvent?) {
@@ -28,6 +27,13 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	fun updateUi(sensorValues: FloatArray) {
+		var sum: Double = 0.0;
+		for (value: Float in sensorValues) {
+			sum += value.toDouble() * value.toDouble()
+		}
+		val totalAcceleration = Math.sqrt(sum)
+		accelerationDisplay.text = "Total acceleration: $totalAcceleration"
+		accelerationComponents.text = "Acceleration: ${sensorValues[0]}, ${sensorValues[1]}, ${sensorValues[2]}"
 	}
 
 	override fun onCreate(savedInstanceState: Bundle?) {
