@@ -1,6 +1,8 @@
 package com.example.lv4
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -8,12 +10,17 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.getChannelId
+import androidx.core.app.NotificationManagerCompat
 import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
 	private val decimalFormat = DecimalFormat("0.00")
 	private lateinit var sensorManager: SensorManager
 	private lateinit var accelerationSensor: Sensor
+
+	private var notifId: Int = 0;
 
 	private lateinit var accelerationDisplay: TextView
 	private lateinit var accelerationComponents: TextView
@@ -33,6 +40,11 @@ class MainActivity : AppCompatActivity() {
 			sum += value.toDouble() * value.toDouble()
 		}
 		val totalAcceleration = Math.sqrt(sum)
+
+		if (totalAcceleration > 12) {
+			displayLikeNotification("NYEOWWWWWWWW", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+		}
+
 		accelerationDisplay.text = "Total acceleration: ${decimalFormat.format(totalAcceleration)}"
 		accelerationComponents.text =
 			"Acceleration\n${sensorValues[0]}\n${sensorValues[1]}\n${sensorValues[2]}"
@@ -56,6 +68,29 @@ class MainActivity : AppCompatActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		sensorManager.registerListener(sensorListener, accelerationSensor, SensorManager.SENSOR_DELAY_FASTEST)
+		sensorManager.registerListener(sensorListener,
+			accelerationSensor,
+			SensorManager.SENSOR_DELAY_FASTEST)
+	}
+
+	private fun displayLikeNotification(title: String, text: String) {
+		val intent = Intent(this, MainActivity::class.java)
+
+		val pendingIntent = PendingIntent.getActivity(
+			this,
+			0,
+			intent,
+			PendingIntent.FLAG_CANCEL_CURRENT
+		)
+		val notification = NotificationCompat.Builder(this, getChannelId(CHANNEL_MAIN))
+			.setSmallIcon(R.mipmap.ic_launcher)
+			.setContentTitle(title)
+			.setContentText(text)
+			.setAutoCancel(true)
+			.setContentIntent(pendingIntent)
+			.build()
+		NotificationManagerCompat.from(this)
+			.notify(notifId, notification)
+		notifId++
 	}
 }
