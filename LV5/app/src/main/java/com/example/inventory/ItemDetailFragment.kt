@@ -70,6 +70,14 @@ class ItemDetailFragment : Fragment() {
 		findNavController().navigateUp()
 	}
 
+	private fun editItem(item: Item) {
+		val action = ItemDetailFragmentDirections.actionItemDetailFragmentToAddItemFragment(
+			getString(R.string.edit_fragment_title),
+			item.id
+		)
+		this.findNavController().navigate(action)
+	}
+
 	/**
 	 * Called when fragment is destroyed.
 	 */
@@ -90,6 +98,7 @@ class ItemDetailFragment : Fragment() {
 			binding.itemPrice.text = item.formattedPrice
 			binding.itemCount.text = item.quantity.toString()
 
+			editItem.setOnClickListener { editItem(item) }
 			deleteItem.setOnClickListener { showConfirmationDialog(item) }
 			sellItem.isEnabled = viewModel.isStockAvailable(item)
 			sellItem.setOnClickListener { viewModel.sellItem(item) }

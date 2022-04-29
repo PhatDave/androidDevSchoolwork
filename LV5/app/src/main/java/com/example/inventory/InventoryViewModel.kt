@@ -60,6 +60,30 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
 	fun isStockAvailable(item: Item): Boolean {
 		return (item.quantity > 0)
 	}
+
+	private fun getUpdatedItemEntry(
+		itemId: Int,
+		itemName: String,
+		itemPrice: String,
+		itemCount: String
+	): Item {
+		val item = Item()
+		item.id = itemId
+		item.name = itemName
+		item.price = itemPrice.toDouble()
+		item.quantity = itemCount.toInt()
+		return item
+	}
+
+	fun updateItem(
+		itemId: Int,
+		itemName: String,
+		itemPrice: String,
+		itemCount: String
+	) {
+		val updatedItem = getUpdatedItemEntry(itemId, itemName, itemPrice, itemCount)
+		updateItem(updatedItem)
+	}
 }
 
 class InventoryViewModelFactory(private val itemDao: ItemDao) : ViewModelProvider.Factory {
