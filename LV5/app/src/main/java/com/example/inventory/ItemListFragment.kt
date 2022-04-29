@@ -22,9 +22,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventory.databinding.ItemListFragmentBinding
+import com.example.inventory.entity.Item
 
 /**
  * Main fragment displaying details for all items in the database.
@@ -52,7 +54,11 @@ class ItemListFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		val adapter = ItemListAdapter {}
+		val adapter = ItemListAdapter {
+			val action =
+				ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
+			this.findNavController().navigate(action)
+		}
 		binding.recyclerView.adapter = adapter
 		viewModel.allItems.observe(this.viewLifecycleOwner)
 		{ items ->
