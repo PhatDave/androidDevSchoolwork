@@ -50,14 +50,14 @@ class ItemDetailFragment : Fragment() {
 	/**
 	 * Displays an alert dialog to get the user's confirmation before deleting the item.
 	 */
-	private fun showConfirmationDialog() {
+	private fun showConfirmationDialog(item: Item) {
 		MaterialAlertDialogBuilder(requireContext())
 			.setTitle(getString(android.R.string.dialog_alert_title))
 			.setMessage(getString(R.string.delete_question))
 			.setCancelable(false)
 			.setNegativeButton(getString(R.string.no)) { _, _ -> }
 			.setPositiveButton(getString(R.string.yes)) { _, _ ->
-				deleteItem()
+				deleteItem(item)
 			}
 			.show()
 	}
@@ -65,7 +65,8 @@ class ItemDetailFragment : Fragment() {
 	/**
 	 * Deletes the current item and navigates to the list fragment.
 	 */
-	private fun deleteItem() {
+	private fun deleteItem(item: Item) {
+		viewModel.deleteItem(item)
 		findNavController().navigateUp()
 	}
 
@@ -89,6 +90,8 @@ class ItemDetailFragment : Fragment() {
 			binding.itemPrice.text = item.formattedPrice
 			binding.itemCount.text = item.quantity.toString()
 
+			deleteItem.setOnClickListener { showConfirmationDialog(item) }
+			sellItem.isEnabled = viewModel.isStockAvailable(item)
 			sellItem.setOnClickListener { viewModel.sellItem(item) }
 		}
 	}
