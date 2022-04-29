@@ -7,7 +7,6 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat.getSystemService
 
 
 fun getChannelId(name: String): String = "channel_$name"
@@ -23,13 +22,13 @@ fun createNotificationChannel(name: String, description: String, importance: Int
 }
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-fun createNotificationChannels() {
+fun createNotificationChannels(context: Context) {
         val channels = mutableListOf<NotificationChannel>()
         channels.add(createNotificationChannel(
                 CHANNEL_MAIN,
                 "URGENT PANIC AAAAAAAAAAA",
                 NotificationManagerCompat.IMPORTANCE_HIGH
         ))
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannels(channels)
 }

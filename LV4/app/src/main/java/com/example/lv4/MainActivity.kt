@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
 		accelerationDisplay = findViewById(R.id.accelerationDisplay)
 		accelerationComponents = findViewById(R.id.accelerationComponents)
 
+		createNotificationChannels(this)
+
 		sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 		accelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 	}
