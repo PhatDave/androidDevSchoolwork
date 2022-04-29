@@ -37,6 +37,19 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
 	fun retrieveItem(id: Int): LiveData<Item> {
 		return itemDao.getById(id).asLiveData()
 	}
+
+	private fun updateItem(item: Item) {
+		viewModelScope.launch {
+			itemDao.update(item)
+		}
+	}
+
+	fun sellItem(item: Item) {
+		if (item.quantity > 0) {
+			item.quantity--
+			updateItem(item)
+		}
+	}
 }
 
 class InventoryViewModelFactory(private val itemDao: ItemDao) : ViewModelProvider.Factory {
