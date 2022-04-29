@@ -16,5 +16,9 @@
 package com.example.inventory
 
 import android.app.Application
+import com.example.inventory.repository.ItemRepository
 
-class InventoryApplication : Application()
+class InventoryApplication : Application() {
+	val itemRepository: ItemRepository
+		get() = ItemRepository.getInstance(this)
+}
